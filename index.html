@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script type="importmap">
+  { "imports": { "appwrite": "https://cdn.jsdelivr.net/npm/appwrite@17.0.1/+esm" } }
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hello World</title>
+  <link href='/style.css' rel='stylesheet'>
+  <style>
+    .admin-button {
+        display: none; /* Hide buttons by default */
+    }
+  </style>
+</head>
+<body>
+  <textarea id="title"></textarea>
+  <textarea id="text"></textarea>
+  <button id="searchTitle">Search Title</button>
+  <button id="listAll">List All Data</button>
+  <button id="adminMode">Admin Mode (REQUIRES PASSWORD)</button>
+  <button id="uploadText" class="admin-button">Upload Text</button>
+  <button id="deleteEntry" class="admin-button">Delete Entry</button>
+  <div id="results"></div>
+  <script src="main.js" type="module"></script>
+</body>
+</html>

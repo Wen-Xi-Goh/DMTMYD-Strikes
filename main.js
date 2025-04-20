@@ -9,6 +9,23 @@ client
 
 const databases = new Databases(client);
 
+// Input Validation for Number-Only Textareas
+const titleInput = document.getElementById('title');
+const textInput = document.getElementById('text');
+
+const validateNumberInput = (inputElement) => {
+    inputElement.addEventListener('input', () => {
+        const currentValue = inputElement.value;
+        const sanitizedValue = currentValue.replace(/[^0-9]/g, ''); // Remove non-numeric characters
+        if (currentValue !== sanitizedValue) {
+            inputElement.value = sanitizedValue; // Update input value with the sanitized version
+        }
+    });
+};
+
+validateNumberInput(titleInput);
+validateNumberInput(textInput);
+
 // SHA-512 hash of the delete password (no salt)
 const hashed_adminPassword = "962c67e328b140b07f1ae65ff959bf970fed2891f10484d8a2f56e48aba1f67dab24778a8c5ad32f809d608b84714ff049e54a6635ca5aed519a78995476b44d";
 
@@ -80,7 +97,7 @@ const deleteEntry = async (titleText) => {
     const promiseList = await databases.listDocuments(
         "68039b9b000aefa4e2bf", // Replace with your database ID
         "68039ba400027d4de1da", // Replace with your collection ID
-        [Query.equal('Phone-Number', titleText)]
+        [Query.equal('Phone-Number', String(titleText))]
     );
     if (promiseList.total === 0) {
         alert("Entry not found.");
@@ -109,16 +126,17 @@ document.getElementById('uploadText').addEventListener('click', () => {
       "68039b9b000aefa4e2bf",
         "68039ba400027d4de1da",
         [
-            Query.equal('title', titleText)
+            Query.equal('Phone-Number', String(titleText))
         ]
     );
 
     promiseList.then(
         function (response) {
             if (response.total === 0) {
+              
                 console.log("no hay");
                 let promise = databases.createDocument(
-                    '68039b9b000aefa4e2bf',
+                  '68039b9b000aefa4e2bf',
                     '68039ba400027d4de1da',
                     titleText,
                     { "Phone-Number": titleText, Strikes: mainText },

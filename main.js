@@ -60,7 +60,7 @@ const listAllDocuments = () => {
                 output += "</ul>";
                 document.getElementById('results').innerHTML = output;
             } else {
-                document.getElementById('results').innerHTML = "No documents found.";
+                document.getElementById('results').innerHTML = "No phone numbers found in the database.";
             }
         },
         function (error) {
@@ -81,10 +81,10 @@ const listDocuments = (queries) => {
             console.log("listDocuments:", response);
             if (response.documents.length > 0) {
                 const { "Phone-Number":phoneNumber, Strikes } = response.documents[0];
-                document.getElementById('results').innerHTML = `you searched for: ${phoneNumber} and got Strikes: ${Strikes}`;
+                document.getElementById('results').innerHTML = `The number of strikes for phone number "${phoneNumber}" is ${Strikes}`;
             }
             else {
-                document.getElementById('results').innerHTML = "nothing was found";
+                document.getElementById('results').innerHTML = `No phone number matching "${document.getElementById('title').value}" was found.`;
             }
         },
         function (error) {
@@ -108,7 +108,7 @@ const deleteEntry = async (titleText) => {
             "68039ba400027d4de1da", // Replace with your collection ID
             titleText
         );
-        alert("Entry deleted.");
+        alert("Phone number deleted successfully.");
     }
 
 };
@@ -148,7 +148,7 @@ document.getElementById('uploadText').addEventListener('click', () => {
                 promise.then(
                     function (response) {
                         console.log("createDocument:", response);
-                        document.getElementById('results').innerHTML = `uploaded Phone-Number: ${titleText} with Strikes: ${mainText}`;
+                        document.getElementById('results').innerHTML = `Successfully uploaded phone number: ${titleText} with strikes: ${mainText}`;
                     },
                     function (error) {
                         console.log(error);
@@ -169,7 +169,7 @@ document.getElementById('uploadText').addEventListener('click', () => {
                 promise.then(
                     function (response) {
                         console.log("updateDocument:", response);
-                        document.getElementById('results').innerHTML = `uploaded Phone-Number: ${titleText} with Strikes: ${mainText}`;
+                        document.getElementById('results').innerHTML = `Successfully uploaded phone number: ${titleText} with strikes: ${mainText}`;
                     },
                     function (error) {
                         console.log(error);

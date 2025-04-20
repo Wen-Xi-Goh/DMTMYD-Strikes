@@ -38,7 +38,7 @@ const listAllDocuments = () => {
                 // Display the data in the results div
                 let output = "<h2>All Data:</h2><ul>";
                 for (const document of response.documents) {
-                    output += `<li><strong>${document.title}:</strong> ${document.text}</li>`;
+                    output += `<li><strong>${document["Phone-Number"]}:</strong> ${document.Strikes}</li>`;
                 }
                 output += "</ul>";
                 document.getElementById('results').innerHTML = output;
@@ -63,8 +63,8 @@ const listDocuments = (queries) => {
         function (response) {
             console.log("listDocuments:", response);
             if (response.documents.length > 0) {
-                const { title, text } = response.documents[0];
-                document.getElementById('results').innerHTML = `you searched for: ${title} and got text: ${text}`;
+                const { "Phone-Number":phoneNumber, Strikes } = response.documents[0];
+                document.getElementById('results').innerHTML = `you searched for: ${phoneNumber} and got Strikes: ${Strikes}`;
             }
             else {
                 document.getElementById('results').innerHTML = "nothing was found";
@@ -80,7 +80,7 @@ const deleteEntry = async (titleText) => {
     const promiseList = await databases.listDocuments(
         "68039b9b000aefa4e2bf", // Replace with your database ID
         "68039ba400027d4de1da", // Replace with your collection ID
-        [Query.equal('title', titleText)]
+        [Query.equal('Phone-Number', titleText)]
     );
     if (promiseList.total === 0) {
         alert("Entry not found.");
@@ -99,14 +99,14 @@ const deleteEntry = async (titleText) => {
 document.getElementById('searchTitle').addEventListener('click', () => {
     const titleText = document.getElementById('title').value;
     console.log('Searching for:', titleText);
-    listDocuments([Query.equal('title', titleText)]);
+    listDocuments([Query.equal('Phone-Number', titleText)]);
 });
 
 document.getElementById('uploadText').addEventListener('click', () => {
     const titleText = document.getElementById('title').value;
     const mainText = document.getElementById('text').value;
     const promiseList = databases.listDocuments(
-        "68039b9b000aefa4e2bf",
+      "68039b9b000aefa4e2bf",
         "68039ba400027d4de1da",
         [
             Query.equal('title', titleText)
@@ -121,7 +121,7 @@ document.getElementById('uploadText').addEventListener('click', () => {
                     '68039b9b000aefa4e2bf',
                     '68039ba400027d4de1da',
                     titleText,
-                    { title: titleText, text: mainText },
+                    { "Phone-Number": titleText, Strikes: mainText },
                     [
                         Permission.read(Role.any()),
                         Permission.write(Role.any())
@@ -130,7 +130,7 @@ document.getElementById('uploadText').addEventListener('click', () => {
                 promise.then(
                     function (response) {
                         console.log("createDocument:", response);
-                        document.getElementById('results').innerHTML = `uploaded title: ${titleText} with text: ${mainText}`;
+                        document.getElementById('results').innerHTML = `uploaded Phone-Number: ${titleText} with Strikes: ${mainText}`;
                     },
                     function (error) {
                         console.log(error);
@@ -142,7 +142,7 @@ document.getElementById('uploadText').addEventListener('click', () => {
                     '68039b9b000aefa4e2bf',
                     '68039ba400027d4de1da',
                     titleText,
-                    { text: mainText },
+                    { Strikes: mainText },
                     [
                         Permission.read(Role.any()),
                         Permission.write(Role.any())
@@ -151,7 +151,7 @@ document.getElementById('uploadText').addEventListener('click', () => {
                 promise.then(
                     function (response) {
                         console.log("updateDocument:", response);
-                        document.getElementById('results').innerHTML = `uploaded title: ${titleText} with text: ${mainText}`;
+                        document.getElementById('results').innerHTML = `uploaded Phone-Number: ${titleText} with Strikes: ${mainText}`;
                     },
                     function (error) {
                         console.log(error);

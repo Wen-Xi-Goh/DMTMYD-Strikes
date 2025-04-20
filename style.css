@@ -52,3 +52,8 @@ button:hover {
   margin: 0; /* Remove margin */
   list-style: none; /* Remove bullet points if desired */
 }
+
+/* Center the text content within the results div */
+#results {
+  text-align: center;
+}

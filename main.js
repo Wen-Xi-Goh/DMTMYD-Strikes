@@ -53,7 +53,7 @@ const listAllDocuments = () => {
             console.log("listAllData:", response);
             if (response.documents.length > 0) {
                 // Display the data in the results div
-                let output = "<h2>All Data:</h2><ul>";
+                let output = "<h2>All Phone Numbers and Strikes:</h2><ul>";
                 for (const document of response.documents) {
                     output += `<li><strong>${document["Phone-Number"]}:</strong> ${document.Strikes}</li>`;
                 }

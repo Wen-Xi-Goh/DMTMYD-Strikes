@@ -5,7 +5,7 @@ console.log('main.js loaded');
 const client = new Client();
 client
     .setEndpoint('https://fra.cloud.appwrite.io/v1')
-    .setProject('67ff7c220025fea72bae');
+    .setProject('6803983a00018abf558b');
 
 const databases = new Databases(client);
 
@@ -27,8 +27,8 @@ const hashPassword = async (password) => {
 // Function to list all documents
 const listAllDocuments = () => {
     let promise = databases.listDocuments(
-        "67ff843c0000a4e56530", // Replace with your database ID
-        "67ff8444002ee67753ea" // Replace with your collection ID
+        "68039b9b000aefa4e2bf", // Replace with your database ID
+        "68039ba400027d4de1da" // Replace with your collection ID
     );
 
     promise.then(
@@ -54,8 +54,8 @@ const listAllDocuments = () => {
 
 const listDocuments = (queries) => {
     let promise = databases.listDocuments(
-        "67ff843c0000a4e56530",
-        "67ff8444002ee67753ea",
+        "68039b9b000aefa4e2bf",
+        "68039ba400027d4de1da",
         queries
     );
 
@@ -78,17 +78,17 @@ const listDocuments = (queries) => {
 
 const deleteEntry = async (titleText) => {
     const promiseList = await databases.listDocuments(
-        "67ff843c0000a4e56530", // Replace with your database ID
-        "67ff8444002ee67753ea", // Replace with your collection ID
+        "68039b9b000aefa4e2bf", // Replace with your database ID
+        "68039ba400027d4de1da", // Replace with your collection ID
         [Query.equal('title', titleText)]
     );
     if (promiseList.total === 0) {
         alert("Entry not found.");
     }
     else {
-        const promise = await databases.deleteDocument(
-            "67ff843c0000a4e56530", // Replace with your database ID
-            "67ff8444002ee67753ea", // Replace with your collection ID
+        await databases.deleteDocument(
+            "68039b9b000aefa4e2bf", // Replace with your database ID
+            "68039ba400027d4de1da", // Replace with your collection ID
             titleText
         );
         alert("Entry deleted.");
@@ -106,8 +106,8 @@ document.getElementById('uploadText').addEventListener('click', () => {
     const titleText = document.getElementById('title').value;
     const mainText = document.getElementById('text').value;
     const promiseList = databases.listDocuments(
-        "67ff843c0000a4e56530",
-        "67ff8444002ee67753ea",
+        "68039b9b000aefa4e2bf",
+        "68039ba400027d4de1da",
         [
             Query.equal('title', titleText)
         ]
@@ -118,8 +118,8 @@ document.getElementById('uploadText').addEventListener('click', () => {
             if (response.total === 0) {
                 console.log("no hay");
                 let promise = databases.createDocument(
-                    '67ff843c0000a4e56530',
-                    '67ff8444002ee67753ea',
+                    '68039b9b000aefa4e2bf',
+                    '68039ba400027d4de1da',
                     titleText,
                     { title: titleText, text: mainText },
                     [
@@ -139,8 +139,8 @@ document.getElementById('uploadText').addEventListener('click', () => {
             } else {
                 console.log("hay");
                 let promise = databases.updateDocument(
-                    '67ff843c0000a4e56530',
-                    '67ff8444002ee67753ea',
+                    '68039b9b000aefa4e2bf',
+                    '68039ba400027d4de1da',
                     titleText,
                     { text: mainText },
                     [

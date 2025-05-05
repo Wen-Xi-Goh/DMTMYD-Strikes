@@ -100,7 +100,7 @@ const deleteEntry = async (titleText) => {
         [Query.equal('Phone-Number', String(titleText))]
     );
     if (promiseList.total === 0) {
-        alert("Entry not found.");
+        document.getElementById('results').innerHTML = "Entry not found.";
     }
     else {
         await databases.deleteDocument(
@@ -108,7 +108,7 @@ const deleteEntry = async (titleText) => {
             "68039ba400027d4de1da", // Replace with your collection ID
             titleText
         );
-        alert("Phone number deleted successfully.");
+        document.getElementById('results').innerHTML = "Phone number deleted successfully.";
     }
 
 };
@@ -205,6 +205,6 @@ document.getElementById('adminMode').addEventListener('click', async () => {
             button.style.display = 'block';
         });
     } else {
-        alert("Incorrect password.");
+        document.getElementById('results').innerHTML = "Incorrect password.";
     }
 });

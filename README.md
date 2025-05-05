@@ -1,1 +1,1 @@
-A simple HTML/JS/CSS starter template
+Daily Memes to Make Your Day (DMTMYD) WhatsApp Community Strike Checker with appwrite database functionality

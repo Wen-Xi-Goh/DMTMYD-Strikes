@@ -1,4 +1,4 @@
-kimport { Client, Databases, Query, Permission, Role } from "appwrite";
+import { Client, Databases, Query, Permission, Role } from "appwrite";
 
 console.log('main_v2.js loaded');
 

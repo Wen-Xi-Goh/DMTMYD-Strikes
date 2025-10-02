@@ -9,11 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DMTMYD Strike Checker</title>
   <link href='/style.css' rel='stylesheet'>
-  <style>
-    .admin-button {
-        display: none; /* Hide buttons by default */
-    }
-  </style>
 </head>
 <body>
   <textarea id="title" inputmode="numeric" placeholder="Enter phone number" maxlength="15"></textarea>
@@ -21,8 +16,8 @@
   <button id="searchTitle" data-umami-event="Search Phone Number button">Search Phone Number</button>
   <button id="listAll" data-umami-event="List All Phone Numbers with Strikes button">List All Phone Numbers with Strikes</button>
   <button id="adminMode" data-umami-event="Admin Mode button">Admin Mode (REQUIRES PASSWORD)</button>
-  <button id="uploadText" class="admin-button" data-umami-event="Upload/Update Strikes button">Upload/Update Strikes</button>
-  <button id="deleteEntry" class="admin-button" data-umami-event="Delete Phone Number from Strike Database button">Delete Phone Number from Strike Database</button>
+  <div id="admin-actions"></div>
   <div id="results"></div>
-  <script src="main.js" type="module"></script>
+  <script src="main_v2.js" type="module"></script>
 </body>
+</html>
